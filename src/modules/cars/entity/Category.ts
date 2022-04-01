@@ -1,9 +1,15 @@
 import { v4 as uuidV4 } from "uuid";
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from "typeorm";
 
 @Entity()
 class Category {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   id?: string;
 
   @Column()

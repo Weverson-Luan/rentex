@@ -18,7 +18,6 @@ const upload = multer({
 });
 //cadastro de categorias.
 routesCategories.post("/", (request: Request, response: Response) => {
-  console.log("data", request.body);
   return createCategoryController().handle(request, response);
 });
 

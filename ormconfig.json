@@ -1,10 +1,10 @@
 {
   "type": "postgres",
-  "port": 5432,
+  "port": 5434,
   "host": "localhost",
   "username": "postgres",
-  "password": "root",
-  "database": "postgres",
+  "password": "ignite",
+  "database": "rentx",
   "entities": ["./src/modules/**/entity/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
