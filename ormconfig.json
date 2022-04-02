@@ -5,6 +5,7 @@
   "username": "postgres",
   "password": "ignite",
   "database": "rentx",
+  "synchronize": true,
   "entities": ["./src/modules/**/entity/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {

@@ -1,15 +1,15 @@
 FROM node:latest
 
-WORKDIR /usr/app
+WORKDIR /usr/app 
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn
 
 COPY . .
 
 EXPOSE 3333
 
-CMD ["npm", "start"]
+CMD yarn dev
 
 
