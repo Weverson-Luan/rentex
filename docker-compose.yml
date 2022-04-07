@@ -9,7 +9,7 @@ services:
       - '5434:5432'
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_PASSWORD=ignite_rentx
       - POSTGRES_DB=rentx
     volumes:
       - pgdata:/data/postgres

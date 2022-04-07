@@ -1,10 +1,18 @@
 import { Router } from "express";
-import { createSpecificationController } from "../modules/useCases/createSpecification";
+import { CreateSpecificationController } from "../modules/useCases/createSpecification/CreateSpecificationController";
+import { ensureAuthentication } from "../middlewares/ensureAuthentication";
 
 const specification = Router();
 
-specification.post("/", (request, response) => {
-  return createSpecificationController.handle(request, response);
-});
+const createSpecificationController = new CreateSpecificationController();
+
+//middleware da nossa autenticação.
+specification.use(ensureAuthentication);
+
+//criação de uma especificação de carro.
+specification.post("/", createSpecificationController.handle);
+
+//buscar por todas especificação de carro cadastrada.
+specification.get("/", createSpecificationController.handle);
 
 export { specification };

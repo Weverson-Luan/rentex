@@ -1,59 +1,64 @@
-import { parse } from "csv-parse";
-import fs from "fs";
+import { parse as csvParse } from "csv-parse";
+import fs from "fs"; // modo nativo do node = file system
+import { inject, injectable } from "tsyringe";
 import { ICategoriesRepository } from "../../cars/repositories/interface/ICategoriesRepository";
 
 interface IImportCategory {
   name: string;
   description: string;
 }
-class ImportCategoryUseCase {
-  constructor(private categorieRepository: ICategoriesRepository) {}
 
-  readCategory(file: Express.Multer.File) {
+@injectable()
+class ImportCategoryUseCase {
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository,
+  ) { }
+
+  loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
     return new Promise((resolve, reject) => {
-      const stream = fs.createReadStream(file.path); //metodo para fazer leitura,  ele precisa do path do arquivo
+      const stream = fs.createReadStream(file.path); // essa função que permite a leitura do arquivo em parter
+
       const categories: IImportCategory[] = [];
 
-      const parseFile = parse();
+      const parseFile = csvParse();
 
-      stream.pipe(parseFile); //para cada pedaço do arquivo lido agente emcaminha para onde quirsemos.
+      stream.pipe(parseFile); // o pipe pega oq esta sendo lido do stream e joga para o lugar q a gente determinar
 
       parseFile
-        .on("data", async (line) => {
+        .on("data", async line => {
           const [name, description] = line;
           categories.push({
             name,
             description,
           });
-        }) // aqui recebe a linhas do nosso aquivo para ele esta fazer a leitura corretamente
+        })
         .on("end", () => {
-          fs.promises.unlink(file.path); //cara responsavel por remover um arquivo
+          fs.promises.unlink(file.path); // remove o arquivo upload da pasta tmp
           resolve(categories);
         })
-        .on("error", (error) => {
-          reject(error);
+        .on("error", err => {
+          reject(err);
         });
-
-      return categories;
     });
   }
 
   async execute(file: Express.Multer.File): Promise<void> {
-    const categories = await this.readCategory(file);
+    const categories = await this.loadCategories(file);
+    console.log("file", categories)
 
-    // categories.map(async (category) => {
-    //   const { name, description } = category;
+    categories.map(async category => {
+      const { name, description } = category;
 
-    //   const existCategory = this.categorieRepository.findByName(name);
+      const existCategory = await this.categoriesRepository.findByName(name);
 
-    //   if (!existCategory) {
-    //     this.categorieRepository.create({
-    //       name,
-    //       description,
-    //     });
-    //   }
-    // });
-    return;
+      if (!existCategory) {
+        await this.categoriesRepository.create({
+          name,
+          description,
+        });
+      }
+    });
   }
 }
 
