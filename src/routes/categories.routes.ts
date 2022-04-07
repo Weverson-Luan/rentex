@@ -1,37 +1,26 @@
 import { Router, Request, Response } from "express";
 import multer from "multer";
-import { CategoriesRepository } from "../modules/cars/repositories/implementations/CategoriesRepository";
-import createCategoryController from "../modules/useCases/createCategory";
-import { importCategoryController } from "../modules/useCases/importCategory";
 
-import { Category } from "../modules/cars/entity/Category";
-import { searchCategoryController } from "../modules/useCases/SearchCategory";
+import { CreateCategoryController } from "../modules/useCases/createCategory/CreateCategoryController";
+import { ImportCategoryController  } from "../modules/useCases/importCategory/ImportCategoryController";
+
+import { SearchCategoryController } from "../modules/useCases/SearchCategory/SearchCategoryController";
 
 const routesCategories = Router();
 
-// const categoriesRepository = new CategoriesRepository();
 
-const categories: Category[] = [];
+const upload = multer({ dest: "./tmp" });
 
-const upload = multer({
-  dest: "./tmp",
-});
+const createCategoryController = new CreateCategoryController();
+const importCategoryController = new ImportCategoryController();
+const searchCategoryController = new SearchCategoryController();
+
 //cadastro de categorias.
-routesCategories.post("/", (request: Request, response: Response) => {
-  return createCategoryController().handle(request, response);
-});
+routesCategories.post("/", createCategoryController.handle);
 
-routesCategories.get("/", (request: Request, response: Response) => {
-  console.log("oi");
-  return searchCategoryController.handle(request, response);
-});
+//buscar por categorias cadastradas.
+routesCategories.get("/", searchCategoryController.handle);
 
-routesCategories.post(
-  "/import",
-  upload.single("file"),
-  (request: Request, response: Response) => {
-    return importCategoryController.handle(request, response);
-  }
-);
+routesCategories.post("/import",upload.single("file"), importCategoryController.handle);
 
 export { routesCategories };

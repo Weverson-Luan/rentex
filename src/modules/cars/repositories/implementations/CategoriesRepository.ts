@@ -40,4 +40,4 @@ class CategoriesRepository implements ICategoriesRepository {
 	}
 }
 
-export default CategoriesRepository;
+export { CategoriesRepository };

@@ -44,3 +44,10 @@ Agora iremos criar tipo um server(servidor) para rodar nossa documentação
 
 yarn add swagger-ui-express
 yarn add @types/swagger-ui-express
+
+
+## TSyringe
+T Seringa
+Um contêiner leve de injeção de dependência para TypeScript/JavaScript para injeção de construtor.
+
+link => https://github.com/microsoft/tsyringe

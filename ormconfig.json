@@ -3,9 +3,9 @@
   "port": 5434,
   "host": "localhost",
   "username": "postgres",
-  "password": "ignite",
+  "password": "ignite_rentx",
   "database": "rentx",
-  "synchronize": true,
+  "synchronize": false,
   "entities": ["./src/modules/**/entity/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {

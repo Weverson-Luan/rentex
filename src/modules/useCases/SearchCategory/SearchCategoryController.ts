@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
-import { Category } from "../../cars/entity/Category";
+import { container } from 'tsyringe';
 import { SearchCategoryUseCase } from "./SearchCategoryUseCase";
 
 class SearchCategoryController {
-  constructor(private searchCategoryUseCase: SearchCategoryUseCase) {}
+  
   async handle(request: Request, response: Response) {
-    const searchCategory = this.searchCategoryUseCase.handle();
+    const searchCategoryUseCase = container.resolve(SearchCategoryUseCase);
 
-    return response.json(searchCategory);
+    const searchCategory = await searchCategoryUseCase.handle();
+
+    return response.status(200).json(searchCategory);
   }
 }
 
