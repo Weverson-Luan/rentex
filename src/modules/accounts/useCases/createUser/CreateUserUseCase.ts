@@ -1,12 +1,13 @@
 import { inject, injectable } from 'tsyringe';
 import { hash } from 'bcrypt';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { IUsersRepository } from '../../repositories/interface/IUsersRepository';
-import { AppError } from '../../../../errors/AppError';
+
+import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
+import { IUsersRepository } from '@modules/accounts/useCases/interface/IUsersRepository';
+import { AppError } from '@shared/infra/http/errors/AppError';
 
 
 @injectable() //fazendo que nossoa clasee seja injetada por depedência
-class CreateUseCase {
+class CreateUserUseCase {
   constructor(
     @inject("UserRepository") //fazendo injeção de depedência
     private userRepositry: IUsersRepository
@@ -27,4 +28,4 @@ class CreateUseCase {
   }
 }
 
-export { CreateUseCase};
+export { CreateUserUseCase};

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import {container } from 'tsyringe';
-import { UpdatedUserAvatarUseCase} from './updatedUserAvatarUseCase';
+
+import { UpdatedUserAvatarUseCase} from '@modules/accounts/useCases/updatedUserAvatar/updatedUserAvatarUseCase';
 
 
 class UpdatedUserAvatarController {

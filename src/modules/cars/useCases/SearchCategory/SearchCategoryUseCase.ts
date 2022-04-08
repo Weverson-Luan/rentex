@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { Category } from "../../cars/entity/Category";
-import { ICategoriesRepository } from "../../cars/repositories/interface/ICategoriesRepository";
+import { Category } from "../../infra/typeorm/entity/Category";
+import { ICategoriesRepository } from "../../repositories/interface/ICategoriesRepository";
 
 @injectable() //fazendo que nossoa clasee seja injetada por depedência
 class SearchCategoryUseCase {

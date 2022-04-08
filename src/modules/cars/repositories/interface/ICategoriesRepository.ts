@@ -3,7 +3,7 @@
 //por que isso ?
 //
 
-import { Category } from "../../entity/Category";
+import { Category } from "../../infra/typeorm/entity/Category";
 
 interface ICreateCategoryDTO {
   name: string;
