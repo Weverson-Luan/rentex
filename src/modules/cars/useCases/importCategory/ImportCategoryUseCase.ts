@@ -1,7 +1,7 @@
 import { parse as csvParse } from "csv-parse";
 import fs from "fs"; // modo nativo do node = file system
 import { inject, injectable } from "tsyringe";
-import { ICategoriesRepository } from "../../cars/repositories/interface/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/interface/ICategoriesRepository";
 
 interface IImportCategory {
   name: string;

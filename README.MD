@@ -51,3 +51,18 @@ T Seringa
 Um contêiner leve de injeção de dependência para TypeScript/JavaScript para injeção de construtor.
 
 link => https://github.com/microsoft/tsyringe
+
+
+
+# TESTES COM JEST 
+
+1. Criação de categoria
+   a. Devo Cria uma uma nova categoria
+   b. Não devo cria uma categoria com o mesmo nome exitente.
+
+2. Autenticação de usuário
+   a. Devo fazer autenticação de um usuário.
+    1. preciso ter um usuário criando antes de fazer minha autenticação.
+    2. preciso verificar se o usuário e exitente e se tem na minha base.
+    3. preciso saber se a senha que o usuário esta madando estão corretas. 
+   

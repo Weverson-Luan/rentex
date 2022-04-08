@@ -6,9 +6,9 @@ import swaggerJson from "../swagger.json";
 
 import "./database";
 import "./shared/container";
-import { AppError } from "./errors/AppError";
+import { AppError } from "./shared/infra/http/errors/AppError";
 
-import { router } from "./routes/index.routes";
+import { router } from "./shared/infra/http/routes/index.routes";
 const app = express();
 
 app.use(express.json());
