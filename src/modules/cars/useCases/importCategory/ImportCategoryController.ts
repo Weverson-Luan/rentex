@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { container } from 'tsyringe';
-import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
+
+import { ImportCategoryUseCase } from "@modules/cars/useCases/importCategory/ImportCategoryUseCase";
+
 class ImportCategoryController {
   
   handle(request: Request, response: Response) {

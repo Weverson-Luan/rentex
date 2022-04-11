@@ -15,8 +15,6 @@ const updatedAvatarControler = new UpdatedUserAvatarController();
 //upload
 const uploadAvatar = multer(uploadConfig.upload("./tmp/avatar"))
 
-
-
 //criação de uma usuário.
 users.post("/", createUserController.handle); 
 

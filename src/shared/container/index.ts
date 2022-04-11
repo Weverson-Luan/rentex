@@ -9,6 +9,9 @@ import { SpecificationsRepository } from '../../modules/cars/infra/typeorm/repos
 import { IUsersRepository } from '../../modules/accounts/useCases/interface/IUsersRepository';
 import { UserRepository } from '../../modules/accounts/infra/typeorm/repositories/UsersRepository';
 
+import { ICarRepository } from '../../modules/cars/repositories/interface/ICarRepository';
+import { CarRepository } from '../../modules/cars/infra/typeorm/repositories/CarRepository';
+
 
 //ICategoryRepositorie => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
 // para quando agente for usar esse nome ele já intendera qual classe estamos chamando
@@ -30,4 +33,11 @@ container.registerSingleton<ISpecificationsRepository>(
 container.registerSingleton<IUsersRepository>(
   "UserRepository",
   UserRepository
+);
+
+//IUsersRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
+// para quando agente for usar esse nome ele já intendera qual classe estamos chamando
+container.registerSingleton<ICarRepository>(
+  "CarRepository",
+  CarRepository
 );

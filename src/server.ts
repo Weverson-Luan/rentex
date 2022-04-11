@@ -4,14 +4,17 @@ import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJson from "../swagger.json";
 
-import "./database";
-import "./shared/container";
-import { AppError } from "./shared/infra/http/errors/AppError";
+import createConnection from "@shared/infra/typeorm/";
+import "@shared/container";
 
-import { router } from "./shared/infra/http/routes/index.routes";
+import { AppError } from "@shared/infra/http/errors/AppError";
+
+import { router } from "@shared/infra/http/routes/index.routes";
+
+createConnection();
 const app = express();
 
-app.use(express.json());
+app.use(express.json()); 
 app.use(
   "/api/v1/rent-cars-docs",
   swaggerUi.serve,

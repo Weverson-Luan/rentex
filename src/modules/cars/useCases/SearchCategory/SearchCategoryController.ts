@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { container } from 'tsyringe';
-import { SearchCategoryUseCase } from "./SearchCategoryUseCase";
+
+import { SearchCategoryUseCase } from "@modules/cars/useCases/SearchCategory/SearchCategoryUseCase";
 
 class SearchCategoryController {
   

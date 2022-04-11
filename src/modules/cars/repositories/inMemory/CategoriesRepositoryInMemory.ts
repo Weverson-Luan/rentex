@@ -1,5 +1,5 @@
-import { Category } from "../../infra/typeorm/entity/Category";
-import { ICategoriesRepository, ICreateCategoryDTO } from "../interface/ICategoriesRepository";
+import { Category } from "@modules/cars/infra/typeorm/entity/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "@modules/cars/repositories/interface/ICategoriesRepository";
 
 class CategoriesRepositoryInMemory implements ICategoriesRepository{
   categories: Category[] = []; //iniciando um const de categorias com um Array vazio.

@@ -15,8 +15,8 @@
       "@shared/*": [
         "shared/*"
       ],
-      "@utlis/*": [
-        "utlis/*"
+      "@utils/*": [
+        "utils/*"
       ]
     },
     "resolveJsonModule": true,
