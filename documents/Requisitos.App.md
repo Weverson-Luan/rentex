@@ -54,3 +54,8 @@
   0. O aluguel deve ter duração minima de 24 hora.
   1. Não deve ser possível cadastrar um novo agendamento caso ja tem alguma ag.. em  aberto para o mesmo usuário.
   2. Não deve ser possível cadastrar um novo agendamento caso ja tem alguma ag.. em  aberto para o mesmo carro.
+  3. Deve ser possível realizar a devolução de um carro.
+  4. Ao realizar o agendamento de um carro, o status deverá ser alterado para indisponivel.
+  5. Caso horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrado uma multa propocional aos dias de atraso.
+  6. Caso tenha multa , deverá se cobrado e somado junto ao total do aluguel.
+  7. Se o carro for devolvido com menos de 24 horas, deverá ser cobrado diária completa

@@ -13,7 +13,7 @@ export class CreateSpecificationsCars1649652478469 implements MigrationInterface
                        
                     },
                     {
-                        name: "specifications_id",
+                        name: "specification_id",
                         type: "uuid",
                     },
                     {
@@ -32,7 +32,7 @@ export class CreateSpecificationsCars1649652478469 implements MigrationInterface
                 name: "FKSpecificationCar",
                 referencedTableName: "specifications",
                 referencedColumnNames: ["id"],
-                columnNames: ["specifications_id"],
+                columnNames: ["specification_id"],
                 onDelete: "SET NULL",
                 onUpdate: "SET NULL"
             })

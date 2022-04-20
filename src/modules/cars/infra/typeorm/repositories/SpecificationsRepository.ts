@@ -11,7 +11,8 @@ class SpecificationsRepository implements ISpecificationsRepository {
   constructor() {
     this.specifications = getRepository(Specification);
   }
- async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+  
+ async create({ name, description }: ICreateSpecificationDTO): Promise<Specification> {
 
   const specification = this.specifications.create({
     description,
@@ -20,6 +21,8 @@ class SpecificationsRepository implements ISpecificationsRepository {
 
   await this.specifications.save(specification);
 
+  return specification;
+
   }
   
 
@@ -27,6 +30,11 @@ class SpecificationsRepository implements ISpecificationsRepository {
     const specificationAllExists = await this.specifications.findOne({name});
 
       return specificationAllExists;
+  }
+
+  async findById(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.specifications.findByIds(ids);
+    return specifications;
   }
 }
 

@@ -66,3 +66,18 @@ link => https://github.com/microsoft/tsyringe
     2. preciso verificar se o usuário e exitente e se tem na minha base.
     3. preciso saber se a senha que o usuário esta madando estão corretas. 
    
+
+
+## TRABALHAR COM DATAS 
+yarn add dayjs
+
+
+
+
+## TABALHAR COM TESTE DE INTEGRAÇÃO 
+yaarn add supertest / @types/supertest
+
+
+
+
+

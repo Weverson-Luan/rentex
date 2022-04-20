@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-
+import "@shared/container/providers"
 import { ICategoriesRepository } from '../../modules/cars/repositories/interface/ICategoriesRepository';
 import  { CategoriesRepository } from '../../modules/cars/infra/typeorm/repositories/CategoriesRepository';
 
@@ -11,6 +11,12 @@ import { UserRepository } from '../../modules/accounts/infra/typeorm/repositorie
 
 import { ICarRepository } from '../../modules/cars/repositories/interface/ICarRepository';
 import { CarRepository } from '../../modules/cars/infra/typeorm/repositories/CarRepository';
+
+import { IRentalsRepository } from '@modules/rentals/repositories/interface/IRentalsRepository';
+import { RentalsRepository } from '@modules/rentals/infra/typeorm/repositories/RentalsRepository';
+
+
+
 
 
 //ICategoryRepositorie => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
@@ -35,9 +41,16 @@ container.registerSingleton<IUsersRepository>(
   UserRepository
 );
 
-//IUsersRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
+//ICarRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
 // para quando agente for usar esse nome ele já intendera qual classe estamos chamando
 container.registerSingleton<ICarRepository>(
   "CarRepository",
   CarRepository
+);
+
+//IRentalsRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
+// para quando agente for usar esse nome ele já intendera qual classe estamos chamando
+container.registerSingleton<IRentalsRepository>(
+  "RentalsRepository",
+  RentalsRepository
 );

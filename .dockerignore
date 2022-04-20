@@ -1,3 +1,15 @@
 node_modules
 .git
 .vscode
+.docker/dbdata
+.docker
+
+
+.dockerignore
+./log
+./tmp
+package.lock.json
+.git
+*dockerfile*
+*docker-compose*
+node_modules

@@ -1,7 +1,7 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entity/Car";
 import { ICarRepository } from "../interface/ICarRepository";
-import { IRequest } from "@modules/cars/useCases/ListingCar/ListingAvailableCarUseCase."
+import { IRequest } from "@modules/cars/useCases/ListingAvailableCars/ListingAvailableCarUseCase."
 
 class CarsRepositoryInMemory implements ICarRepository{
   car: Car[] = []; //iniciando um const de categorias com um Array vazio.
@@ -12,7 +12,7 @@ async findByLicensePlate(license_plate: string): Promise<Car> {
   return car;
 };
 
-async create({ name, description,daily_rate, license_plate, fine_amount, brand, category_id  }: ICreateCarDTO): Promise<Car> {
+async create({ name, description,daily_rate, license_plate, fine_amount, brand, category_id, id  }: ICreateCarDTO): Promise<Car> {
     const car = new Car(); //instanciando minha entity
 
     Object.assign(car, {
@@ -22,7 +22,8 @@ async create({ name, description,daily_rate, license_plate, fine_amount, brand, 
       license_plate,
       fine_amount,
       brand,
-      category_id   
+      category_id,
+      id   
     })
 
     this.car.push(car);
@@ -46,5 +47,10 @@ async findAvailable(
     return null;
   });
 }
-};7
+async findById(car_id: string): Promise<Car> {
+  const carSpecification = await this.car.find((car)=> car.id === car_id);
+  
+  return carSpecification;
+}
+};
 export { CarsRepositoryInMemory };

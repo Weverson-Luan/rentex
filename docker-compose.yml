@@ -8,9 +8,9 @@ services:
     ports:
       - 5434:5432
     environment:
-      - POSTGRES_USER=docker
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=ignite
-      - POSTGRES_DB=rentx
+      - POSTGRES_DB=rentx_ignite
     volumes:
       - pgdata:/data/postgres
   app:

@@ -11,7 +11,7 @@ class CarRepository implements ICarRepository {
     this.repository = getRepository(Car);
   }
 
-async  create({name, description,daily_rate, license_plate, fine_amount, brand, category_id  }: ICreateCarDTO): Promise<Car> {
+async  create({name, description,daily_rate, license_plate, fine_amount, brand, category_id, specifications, id  }: ICreateCarDTO): Promise<Car> {
 
     const car = this.repository.create({
       name,
@@ -20,7 +20,9 @@ async  create({name, description,daily_rate, license_plate, fine_amount, brand, 
       license_plate,
       fine_amount, 
       brand,
-      category_id
+      category_id,
+      specifications,
+      id
     });
 
     await this.repository.save(car);
@@ -36,28 +38,35 @@ async  create({name, description,daily_rate, license_plate, fine_amount, brand, 
     return car;
   }
 
-  async findAvailable(name?: string, brand?: string, category_id?: string): Promise<Car[]> {
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
     const carsQuery = await this.repository
-          .createQueryBuilder("cars")
-          .where("available = :available", { available: true });
+      .createQueryBuilder("c")
+      .where("available = :available", { available: true });
 
-      //quando o campo brand vier preenchido iremos fazer outra busca
-      if(brand){
-        carsQuery.andWhere("cars.brand = :brand", { brand });
-      };
-      //quando o campo name vier preenchido iremos fazer outra busca
-      if(name){
-        carsQuery.andWhere("cars.name = :name", { name });
-      };
-      //quando o campo category_id vier preenchido iremos fazer outra busca
-      if(category_id){
-        carsQuery.andWhere("cars.category_id = :category_id", { category_id });
-      };
+    if (brand) {
+      carsQuery.andWhere("brand = :brand", { brand });
+    }
 
-      //para realmente de conseguirmos rodar nosso builder
-      const cars =  await carsQuery.getMany();
+    if (name) {
+      carsQuery.andWhere("name = :name", { name });
+    }
 
-      return cars;
+    if (category_id) {
+      carsQuery.andWhere("category_id = :category_id", { category_id });
+    }
+
+    const cars = await carsQuery.getMany();
+
+    return cars;
+  }
+
+ async findById(car_id: string): Promise<Car> {
+   const car = await this.repository.findOne(car_id)
+    return car;
   }
 
 };

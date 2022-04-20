@@ -1,17 +1,18 @@
 import "reflect-metadata";
+import "dotenv/config"; 
 import express, { NextFunction, Request,Response, } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
-import swaggerJson from "../swagger.json";
+import swaggerJson from "../../../../swagger.json";
 
-import createConnection from "@shared/infra/typeorm/";
+import createConnection from "@shared/infra/typeorm";
 import "@shared/container";
 
 import { AppError } from "@shared/infra/http/errors/AppError";
 
 import { router } from "@shared/infra/http/routes/index.routes";
 
-createConnection();
+createConnection(); 
 const app = express();
 
 app.use(express.json()); 
@@ -37,6 +38,6 @@ app.use((error: Error, request:Request, response: Response, next: NextFunction)=
     message: `Internal server Error ${error.message}`
   }) 
   
-})
+});
 
-app.listen(3333, () => console.log("Start is running !")); 
+  export  { app };
