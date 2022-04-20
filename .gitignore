@@ -3,7 +3,7 @@
 /dist
 /tmp
 /out-tsc
-
+/docker
 
 # dependencies
 /node_modules
