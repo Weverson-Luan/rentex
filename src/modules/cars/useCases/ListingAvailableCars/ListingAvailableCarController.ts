@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { ListingAvailableCarUseCase } from "@modules/cars/useCases/ListingAvailableCars/ListingAvailableCarUseCase.";
+import { ListingAvailableCarUseCase } from "@modules/cars/useCases/listingAvailableCars/ListingAvailableCarUseCase";
 
 class ListingAvailableCarController {
 

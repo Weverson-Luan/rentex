@@ -12,16 +12,17 @@ interface IRequest {
 export class CreateSpecificationUseCase {
   constructor(
     @inject("ISpecificationsRepository") //fazendo injeção de depedência
-    private specificationsRepositroy: ISpecificationsRepository
+    private specificationsRepository: ISpecificationsRepository
   ) {}
  async execute({ name, description }: IRequest): Promise<void> {
-    const specificationAlreadyExists = await this.specificationsRepositroy.findByName(name);
+    const specificationAlreadyExists = await this.specificationsRepository.findByName(name);
+      console.log(specificationAlreadyExists)
 
     if (specificationAlreadyExists) {
       throw new AppError("Specification alread exists!", 404);
     }
     
-    this.specificationsRepositroy.create({
+    this.specificationsRepository.create({
       name,
       description,
     });

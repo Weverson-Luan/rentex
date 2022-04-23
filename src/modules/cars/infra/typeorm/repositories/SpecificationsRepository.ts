@@ -27,7 +27,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
   
 
   async findByName(name: string): Promise<Specification> {
-    const specificationAllExists = await this.specifications.findOne({name});
+    const specificationAllExists = await this.specifications.findOne(name);
 
       return specificationAllExists;
   }
@@ -35,6 +35,12 @@ class SpecificationsRepository implements ISpecificationsRepository {
   async findById(ids: string[]): Promise<Specification[]> {
     const specifications = await this.specifications.findByIds(ids);
     return specifications;
+  }
+
+  async findBySpecifications(): Promise<Specification[]> {
+    const specifications = await this.specifications.find();
+
+    return specifications
   }
 }
 

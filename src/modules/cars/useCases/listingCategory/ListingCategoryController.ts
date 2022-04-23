@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { container } from 'tsyringe';
 
-import { SearchCategoryUseCase } from "@modules/cars/useCases/SearchCategory/SearchCategoryUseCase";
+import { ListingCategoryUseCase } from "@modules/cars/useCases/listingCategory/ListingCategoryUseCase";
 
-class SearchCategoryController {
+class ListingCategoryController {
   
   async handle(request: Request, response: Response) {
-    const searchCategoryUseCase = container.resolve(SearchCategoryUseCase);
+    const searchCategoryUseCase = container.resolve(ListingCategoryUseCase);
 
     const searchCategory = await searchCategoryUseCase.handle();
 
@@ -14,4 +14,4 @@ class SearchCategoryController {
   }
 }
 
-export { SearchCategoryController };
+export { ListingCategoryController };

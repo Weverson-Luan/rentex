@@ -1,7 +1,7 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entity/Car";
 import { ICarRepository } from "../interface/ICarRepository";
-import { IRequest } from "@modules/cars/useCases/ListingAvailableCars/ListingAvailableCarUseCase."
+import { IRequest } from "@modules/cars/useCases/listingAvailableCars/ListingAvailableCarUseCase"
 
 class CarsRepositoryInMemory implements ICarRepository{
   car: Car[] = []; //iniciando um const de categorias com um Array vazio.
@@ -48,9 +48,14 @@ async findAvailable(
   });
 }
 async findById(car_id: string): Promise<Car> {
-  const carSpecification = await this.car.find((car)=> car.id === car_id);
+  const carSpecification = this.car.find((car)=> car.id === car_id);
   
   return carSpecification;
+}
+
+async updatedAvailable(id: string, available: boolean): Promise<void> {
+  const findIndex = this.car.findIndex((car)=> car.id === id);
+  this.car[findIndex].available = available;
 }
 };
 export { CarsRepositoryInMemory };

@@ -1,80 +1,75 @@
-import { UsersRepositoryInMemory } from "@modules/accounts/repositories/inMemory/UsersRepositoryInMemory";
-import { AuthenticationUseCase } from "@modules/accounts/useCases/authenticateUser/authenticateUserUseCase";
-import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
-import { AppError} from '@shared/infra/http/errors/AppError'
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/inMemory/UsersRepositoryInMemory";
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/inMemory/UsersTokensRepositoryInMemory";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DaysDateProvider";
+import { AppError } from "@shared/infra/http/errors/AppError";
 
+import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
+import { AuthenticationUseCase } from "./AuthenticateUserUseCase";
+
+let authenticateUserUseCase: AuthenticationUseCase;
+let usersRepositoryInMemory: UsersRepositoryInMemory;
+let userTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
+let dateProvider: DayjsDateProvider;
 
 let createUserUseCase: CreateUserUseCase;
-let authenticateUseCase: AuthenticationUseCase;
-let usersRepositoryInMemory: UsersRepositoryInMemory;
 
-describe("Devo fazer Autenticação de usuário", ()=> {
+describe("Authenticate User", () => {
+    beforeEach(() => {
+        usersRepositoryInMemory = new UsersRepositoryInMemory();
+        userTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
+        dateProvider = new DayjsDateProvider();
 
-   //ANTES DE QUALQUER COISA ELE EXECUTARA O BEFOREEACH.
-   beforeEach(()=> {
-    //vamos instância nossas classes
-     usersRepositoryInMemory = new UsersRepositoryInMemory();
-    createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
-    authenticateUseCase = new AuthenticationUseCase(usersRepositoryInMemory);
-  });
-
-  // DEVE SER POSSIVIEL AUTENTICAR UM USUÁRIO.
-  it("Deve ser possiviél autenticar um usuário.",async ()=> {
-    const user: ICreateUserDTO = {
-      name: "Luan",
-      email: "luandev@gmail.com",
-      password: "1234",
-      driver_license: "MG-08732",   
-    };
-
-    // FAZENDO A CRIAÇÃO DO USUÁRIO
-    await createUserUseCase.execute(user)
-   
-    //FAZENDO A AUTENTICAÇÃO DO USUÁRIO
-    const userIsLogged = await authenticateUseCase.execute({
-      email: user.email,
-      password: user.password
+        authenticateUserUseCase = new AuthenticationUseCase(
+            usersRepositoryInMemory,
+            userTokensRepositoryInMemory,
+            dateProvider
+        );
+        createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
     });
 
-    // ESPERO QUE DENTRO DO MEU userIsLogged tenha uma propiedade chamada token
-    expect(userIsLogged).toHaveProperty("token");
+    it("should be able to authenticate an user", async () => {
+        const user: ICreateUserDTO = {
+            driver_license: "000123",
+            email: "user@test.com",
+            password: "1234",
+            name: "User Test",
+        };
+        await createUserUseCase.execute(user);
 
-  });
-
-
-  //ESPERO QUE NÃO DEVE SER CAPAZ DE AUTENTICAR UM EMAIL DE USUÁRIO INEXISTENTE
-  it("ESPERO QUE NÃO DEVE SER CAPAZ DE AUTENTICAR UM EMAIL DE USUÁRIO INEXISTENTE", ()=> {
-      expect(async()=> {
-      //FAZENDO A AUTENTICAÇÃO DO USUÁRIO PARA VERIFICAR SE O EMAIL EXISTE.
-        await authenticateUseCase.execute({
-          email: "emailalredexist@gmail.com.br",
-          password:"1234"
+        const result = await authenticateUserUseCase.execute({
+            email: user.email,
+            password: user.password,
         });
-      }).rejects.toBeInstanceOf(AppError);
-  });
 
+        expect(result).toHaveProperty("token");
+    });
 
-   //ESPERO QUE NÃO DEVE SER CAPAZ DE AUTENTICAR UM USUÁRIO COM A SENHA INCORRETA
-   it("ESPERO QUE NÃO DEVE SER CAPAZ DE AUTENTICAR UM USUÁRIO COM A SENHA INCORRETA", ()=> {
-    expect( async ()=> {
-    //FAZENDO A AUTENTICAÇÃO DO USUÁRIO PARA VERIFICAR SE O A SENHA CORRESPONDE.
-    const user: ICreateUserDTO = {
-      name: "Luan",
-      email: "luandev@gmail.com",
-      password: "1234",
-      driver_license: "MG-08732",   
-    };
+    it("should not be able to authenticate an nonexistent user", async () => {
+        await expect(
+            authenticateUserUseCase.execute({
+                email: "false@email.com",
+                password: "1234",
+            })
+        ).rejects.toEqual(new AppError("Email or password incorrect!"));
+    });
 
-     // FAZENDO A CRIAÇÃO DO USUÁRIO
-     await createUserUseCase.execute(user);
+    it("should not be able to authenticate with incorrect password", async () => {
+        const user: ICreateUserDTO = {
+            driver_license: "9999",
+            email: "user@user.com",
+            password: "1234",
+            name: "User Test Error",
+        };
 
-     await authenticateUseCase.execute({
-        email: user.email,
-        password: "passwordInvalid",
-      });
-    }).rejects.toBeInstanceOf(AppError);
-  });
+        await createUserUseCase.execute(user);
 
-
-})
+        await expect(
+            authenticateUserUseCase.execute({
+                email: user.email,
+                password: "incorrectPassword",
+            })
+        ).rejects.toEqual(new AppError("Email or password incorrect!"));
+    });
+});

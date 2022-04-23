@@ -67,8 +67,17 @@ async  create({name, description,daily_rate, license_plate, fine_amount, brand, 
  async findById(car_id: string): Promise<Car> {
    const car = await this.repository.findOne(car_id)
     return car;
-  }
+  };
 
+  async updatedAvailable(id: string, available: boolean): Promise<void> {
+    await this.repository.createQueryBuilder()
+    .update() //atualizar 
+    .set({available}) // setar o valor 
+    .where("id = :id") //onde o a condição for igual
+    .setParameters({id})
+    .execute();
+    
+  }
 };
 
 export { CarRepository };

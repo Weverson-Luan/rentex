@@ -5,11 +5,11 @@
     "description": "This is an API Rent",
     "version": "1.0.0",
     "contact": {
-      "email": "criscamila@gmail.com"
+      "email": "luandev@gmail.com"
     }
   },
   "paths": {
-    "/categories": {
+    "/v1/categories": {
       "post": {
         "tags": ["Category"],
         "summary": "Create a category",
@@ -78,7 +78,7 @@
         }
       }
     },
-    "/categories/import": {
+    "/v1/categories/import": {
       "post": {
         "tags": ["Category"],
         "summary": "Upload a new category",
@@ -110,7 +110,7 @@
         }
       }
     },
-    "/specifications": {
+    "/v1/specifications": {
       "post": {
         "tags": ["Specifications"],
         "summary": "Create a specification",
@@ -139,7 +139,7 @@
         }
       }
     },
-    "/sessions": {
+    "/v1/users/sessions": {
       "post": {
         "tags": ["Session"],
         "summary": "Authentication user",
@@ -171,7 +171,7 @@
         }
       }
     },
-    "/cars": {
+    "/v1/cars": {
       "post": {
         "tags": ["Cars"],
         "summary": "Create a new car",
@@ -200,7 +200,7 @@
         }
       }
     },
-    "/cars/images/{id}": {
+    "/v1/cars/images/{id}": {
       "post": {
         "tags": ["Cars"],
         "summary": "Upload images",
