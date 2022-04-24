@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { CreateRentalController } from "@modules/rentals/useCases/createRental/CreateRentalsControllerUseCase";
 import { DevolutionRentalController } from "@modules/rentals/useCases/devolutionRental/devolutionRentalController";
-import { ListingRentalsByUserController } from "@modules/rentals/useCases/listingRentalsByUser/listingRentalsByUserController";
+import { ListingRentalsByUserController } from "@modules/rentals/useCases/listingRentalsByUser/ListingRentalsByUserController";
 
 import { ensureAuthentication} from "@shared/infra/http/middlewares/ensureAuthentication";
 
