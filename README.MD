@@ -75,9 +75,14 @@ yarn add dayjs
 
 
 ## TABALHAR COM TESTE DE INTEGRAÇÃO 
-yaarn add supertest / @types/supertest
+yarn add supertest / @types/supertest
 
 
 
 
+## AWS
+yarn add aws-sdk
 
+
+## Para Manipular nossas entidade
+yarn add class-transformer

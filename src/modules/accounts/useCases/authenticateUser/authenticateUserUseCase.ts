@@ -43,14 +43,14 @@ interface IRequest{
       const user = await this.userRepository.findByEmail(email);
 
       if(!user){
-        throw new AppError("Email or password incorrect!", 404)
+        throw new AppError("Email or password incorrect!")
       };
       
       //se senha esta correta.
       const passwordMatch = await compare(password, user.password);
 
       if(!passwordMatch){
-        throw new AppError("Email or password incorrect!", 401)
+        throw new AppError("Email or password incorrect!")
       };
 
       //se a senha estiver correto eu gero o JWT.

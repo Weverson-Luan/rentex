@@ -3,32 +3,19 @@ import nodemailer, { Transporter } from 'nodemailer';
 import { IMailProvider } from "../IMailProvider";
 import handlebars from "handlebars";
 import fs from "fs";
-
+import { SES } from "aws-sdk";
 
 @injectable()
-class EtherealMailProvider implements IMailProvider{
+class SESMailProvider implements IMailProvider{
   private client: Transporter;
   //responsavel por criar nossa conta
   constructor(){
-    nodemailer.createTestAccount().then(account => {
-
-    // Create a SMTP transporter object
-    let transporter = nodemailer.createTransport({
-      host: account.smtp.host,
-      port: account.smtp.port,
-      secure: account.smtp.secure,
-      auth: {
-          user: account.user,
-          pass: account.pass
-      },
-      tls: {
-        rejectUnauthorized: false
-        }
-      });
-
-      this.client = transporter;
-
-    }).catch( error => console.error(error))
+    this.client = nodemailer.createTransport({
+      SES: new SES({
+        apiVersion: "2010-12-01",
+        region: process.env.AWS_REGION,
+      })
+    })
   }
   async sendEmail(to: string, subject: string, variables: any, path: string): Promise<void> {
     //vamos fazer a leitura do arquivo que estamos recebendo;
@@ -53,4 +40,4 @@ class EtherealMailProvider implements IMailProvider{
   };
 };
 
-export { EtherealMailProvider };
+export { SESMailProvider };

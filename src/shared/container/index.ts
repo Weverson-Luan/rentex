@@ -1,5 +1,9 @@
 import { container } from 'tsyringe';
-import "@shared/container/providers"
+
+import "@shared/container/providers/DateProvider";
+import "@shared/container/providers/MailProvider";
+import "@shared/container/providers/StorageProvider";
+
 import { ICategoriesRepository } from '../../modules/cars/repositories/interface/ICategoriesRepository';
 import  { CategoriesRepository } from '../../modules/cars/infra/typeorm/repositories/CategoriesRepository';
 

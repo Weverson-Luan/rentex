@@ -19,7 +19,7 @@ const uploadCarImagesController = new UploadCarImagesController();
 // car.use(ensureAuthentication);
 
 //upload
-const uploadCarImages = multer(uploadConfig.upload("./tmp/cars"))
+const uploadCarImages = multer(uploadConfig)
 
 //criação de uma especificação de carro.
 car.post("/", ensureAuthentication, ensureAdmin ,createCarController.handle);

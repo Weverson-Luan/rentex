@@ -11,7 +11,7 @@ interface IPaylod {
 }
 export async function ensureAuthentication(request: Request, response:Response, next: NextFunction){
   const authHeader = request.headers.authorization;
-  const userTokenRepository = new UsersTokensRepository();
+
 
 
   // verificar se esta vindo o token no header
@@ -27,19 +27,11 @@ export async function ensureAuthentication(request: Request, response:Response, 
   //agora se o token estiver correto precisamos pega as informação contidas no token
   try {
   
-   const { sub: user_id } =  verify(token, auth.secret_refresh_token) as IPaylod;
-   console.log("vrify", user_id)
-   
+   const { sub: user_id } =  verify(token, auth.secret_token) as IPaylod;
    
    //pegamos o id dentro do token agora vamos fazer uma buscar para ver se realmente existe 
    //esse usário em nosso banco de dados se sim vamos retorna-lo se não error neles.
-  
-   const user = await userTokenRepository.findByUserIdAndRefreshToken(user_id, token);
 
-   //verificar se na busca ele me trouxe usuário
-   if(!user){
-     throw new AppError("User does not exists!", 404);
-   }
 //passando informação do usuario na requisição
    request.user = {
     id: user_id

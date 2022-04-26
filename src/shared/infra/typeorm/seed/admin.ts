@@ -1,9 +1,9 @@
 import { v4 as uuidV4 } from "uuid"
 import { hash } from "bcrypt"
-import cretaeConnection from "../index"
+import createConnection from "../index"
 
 const create = async () => {
-  const connection = await cretaeConnection("localhost")
+  const connection = await createConnection("localhost")
 
   const id = uuidV4()
   const password = await hash('1234', 8)

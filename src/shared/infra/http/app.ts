@@ -4,6 +4,7 @@ import express, { NextFunction, Request,Response, } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJson from "../../../../swagger.json";
+import upload from "@config/upload";
 
 import createConnection from "@shared/infra/typeorm";
 import "@shared/container";
@@ -11,6 +12,7 @@ import "@shared/container";
 import { AppError } from "@shared/infra/http/errors/AppError";
 
 import { router } from "@shared/infra/http/routes/index.routes";
+
 
 createConnection(); 
 const app = express();
@@ -21,6 +23,8 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerJson)
 );
+app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
+app.use("/cars", express.static(`${upload.tmpFolder}/cars`));
 app.use(router);
 
 //middlewares de error
