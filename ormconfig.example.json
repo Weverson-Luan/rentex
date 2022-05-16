@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "port": 1020,
+  "host": "localhost",
+  "username": "username",
+  "password": "password",
+  "database": "database",
+  "synchronize": false,
+  "entities": ["./src/modules/**/infra/typeorm/entity/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+  }
+}

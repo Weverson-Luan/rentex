@@ -86,3 +86,16 @@ yarn add aws-sdk
 
 ## Para Manipular nossas entidade
 yarn add class-transformer
+
+
+
+# Babel converte codigo typescrip para javascript
+yarn add --dev @babel/cli 
+yarn add --dev @babel/core
+yarn add --dev @babel/node
+yarn add --dev @babel/plugin-proposal-class-properties
+yarn add --dev @babel/plugin-proposal-decorators
+yarn add --dev @babel/preset-env
+yarn add --dev @babel/preset-typescript
+yarn add --dev babel-plugin-module-resolver
+yarn add --dev babel-plugin-transform-typescript-metadata

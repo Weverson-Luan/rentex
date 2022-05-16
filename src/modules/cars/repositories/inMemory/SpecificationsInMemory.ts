@@ -31,6 +31,9 @@ class SpecificationsInMemory implements ISpecificationsRepository{
 
     return specificationAll;
   }
+  async findBySpecifications(): Promise<Specification[]> {
+    return this.specification;
+  }
 };
 
 export { SpecificationsInMemory, ICreateSpecificationDTO };

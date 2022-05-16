@@ -1,29 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "target": "es2016",
     "module": "commonjs",
+    "rootDir": "./",
     "baseUrl": "./src",
+    "outDir": "./dist",
     "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ]
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"]
     },
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": false,
+    "strict": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true
+
   }
 }
