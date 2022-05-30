@@ -3,7 +3,7 @@ import { UsersRepositoryInMemory } from '@modules/accounts/repositories/inMemory
 import { UsersTokensRepositoryInMemory } from '@modules/accounts/repositories/inMemory/UsersTokensRepositoryInMemory';
 import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DaysDateProvider';
-import { AppError } from '@shared/infra/http/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { AuthenticationUseCase } from '@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
 
 let authenticateUserUseCase: AuthenticationUseCase;

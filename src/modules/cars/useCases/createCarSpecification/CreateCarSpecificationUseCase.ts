@@ -4,7 +4,7 @@ import { SpecificationsRepository } from "@modules/cars/infra/typeorm/repositori
 import { SpecificationsInMemory } from "@modules/cars/repositories/inMemory/SpecificationsInMemory";
 import { ICarRepository } from "@modules/cars/repositories/interface/ICarRepository";
 import { ISpecificationsRepository } from "@modules/cars/repositories/interface/ISpecificationsRepository";
-import { AppError } from "@shared/infra/http/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 

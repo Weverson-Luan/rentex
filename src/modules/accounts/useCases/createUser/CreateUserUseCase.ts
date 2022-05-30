@@ -3,7 +3,7 @@ import { hash } from 'bcrypt';
 
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { IUsersRepository } from '@modules/accounts/repositories/interface/IUsersRepository';
-import { AppError } from '@shared/infra/http/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 
 
 @injectable() //fazendo que nossoa clasee seja injetada por depedência

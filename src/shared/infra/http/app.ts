@@ -9,7 +9,7 @@ import upload from "@config/upload";
 import createConnection from "@shared/infra/typeorm";
 import "@shared/container";
 
-import { AppError } from "@shared/infra/http/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 
 import { router } from "@shared/infra/http/routes/index.routes";
 

@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { AppError } from '@shared/infra/http/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { ICarRepository } from '@modules/cars/repositories/interface/ICarRepository';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
 import { inject, injectable } from 'tsyringe';

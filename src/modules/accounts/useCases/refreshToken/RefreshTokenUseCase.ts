@@ -4,7 +4,7 @@ import { verify, sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
-import { AppError } from "@shared/infra/http/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 
 interface IPayload {
     sub: string;

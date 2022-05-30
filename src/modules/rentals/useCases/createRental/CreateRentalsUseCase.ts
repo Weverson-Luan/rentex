@@ -4,7 +4,7 @@ import { IDateProvider } from "@shared/container/providers/DateProvider/IDatePro
 import { IRentalsRepository } from "@modules/rentals/repositories/interface/IRentalsRepository";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DaysDateProvider";
 import { ICarRepository } from "@modules/cars/repositories/interface/ICarRepository";
-import { AppError } from "@shared/infra/http/errors/AppError";
+import { AppError } from "@shared/errors/AppError";
 
 
 interface IRequest {

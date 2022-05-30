@@ -3,7 +3,7 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 
 import { IUsersRepository } from '@modules/accounts/repositories/interface/IUsersRepository';
-import { AppError } from '@shared/infra/http/errors/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { IUsersTokensRepository } from '../../repositories/interface/IUsersTokensRepository';
 import auth from '@config/auth';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
