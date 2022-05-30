@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
 
-import { CreateCarUseCase } from "@modules/cars/useCases/createCar/CreateCarUseCase";
+import { CreateCarUseCase } from "@modules/cars/useCases/CreateCar/CreateCarUseCase";;
 import { Request, Response } from "express";
 
 class CreateCarController {
