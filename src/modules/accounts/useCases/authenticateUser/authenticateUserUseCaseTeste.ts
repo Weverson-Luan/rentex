@@ -24,7 +24,7 @@ interface IRequest{
 
 }
   @injectable() //fazendo que nossoa clasee seja injetada por depedência
-  class AuthenticationUseCase {
+  class AuthenticationUserUseCase {
     constructor(
       @inject("UserRepository")  //fazendo injeção de depedência
       private userRepository: IUsersRepository,
@@ -89,4 +89,4 @@ interface IRequest{
 
     }
   }
-  export { AuthenticationUseCase }; 
+  export { AuthenticationUserUseCase }; 
