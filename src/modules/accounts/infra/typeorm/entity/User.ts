@@ -1,10 +1,5 @@
-import { v4 as uuidV4 } from "uuid";
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column,CreateDateColumn } from "typeorm";
+import { v4 as uuidV4} from "uuid";
 import { Expose } from "class-transformer";
 
 @Entity('users')
