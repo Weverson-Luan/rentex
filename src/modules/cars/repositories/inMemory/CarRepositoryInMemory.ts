@@ -1,7 +1,6 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { Car } from "@modules/cars/infra/typeorm/entity/Car";
 import { ICarRepository } from "../interface/ICarRepository";
-import { IRequest } from "@modules/cars/useCases/listingAvailableCars/ListingAvailableCarUseCase"
 
 class CarsRepositoryInMemory implements ICarRepository{
   car: Car[] = []; //iniciando um const de categorias com um Array vazio.
