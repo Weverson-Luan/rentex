@@ -10,8 +10,10 @@ services:
         - .:/usr/app-rentx
       links:
         - database
+        - redis-database
       depends_on:
         - database
+        - redis-database
 
   database:
       image: postgres
@@ -25,7 +27,15 @@ services:
         - POSTGRES_DB=rentx_ignite
       volumes:
         - pgdata:/data/postgres
-  
+  redis-database:
+      image: redis:alpine
+      container_name: ignite-reds
+      restart: always
+      ports:
+        - 6379:6379
+      volumes:
+        - pgdata:/data/redis
+
 volumes:
   pgdata:
     driver: local
