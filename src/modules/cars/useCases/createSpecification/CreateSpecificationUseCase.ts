@@ -20,8 +20,8 @@ export class CreateSpecificationUseCase {
 
     if (specificationAlreadyExists) {
       throw new AppError("Specification alread exists!", 404);
-    }
-    
+    };
+
     this.specificationsRepository.create({
       name,
       description,
