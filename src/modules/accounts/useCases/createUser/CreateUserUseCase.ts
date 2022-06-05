@@ -12,7 +12,7 @@ class CreateUserUseCase {
     @inject("UserRepository") //fazendo injeção de depedência
     private userRepositry: IUsersRepository
   ){}
-  async execute({name, email, password, driver_license }: ICreateUserDTO): Promise<void>{
+  async execute({name, isAdmin, email, password, driver_license }: ICreateUserDTO): Promise<void>{
 
     const userAlreadyExists = await this.userRepositry.findByEmail(email)
 
@@ -23,7 +23,7 @@ class CreateUserUseCase {
     const passwordHash = await hash(password, 8);
 
     await this.userRepositry.create({
-      name, email, password: passwordHash, driver_license
+      name, isAdmin, email, password: passwordHash, driver_license
     });
   }
 }
