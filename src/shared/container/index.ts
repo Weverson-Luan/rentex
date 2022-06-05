@@ -21,6 +21,8 @@ import { RentalsRepository } from '@modules/rentals/infra/typeorm/repositories/R
 
 import { IUsersTokensRepository } from '../../modules/accounts/repositories/interface/IUsersTokensRepository';
 import { UsersTokensRepository } from '../../modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
+import { ICarsImagesRepository } from '@modules/cars/repositories/interface/IcarsImagesRepository';
+import { CarsImageRepository } from '@modules/cars/infra/typeorm/repositories/CarsImageRepository';
 
 
 
@@ -51,6 +53,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<ICarRepository>(
   "CarRepository",
   CarRepository
+);
+
+// Injeção de dependência de upload de imagens de carros - ICarsImagesRepository
+container.registerSingleton<ICarsImagesRepository>(
+  'CarImagesRepositories', CarsImageRepository
 );
 
 //IRentalsRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
