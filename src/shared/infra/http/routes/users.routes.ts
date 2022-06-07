@@ -25,4 +25,6 @@ users.patch("/avatar", ensureAuthentication, uploadAvatar.single('avatar_file'),
 //Buscar por um usuário.
 users.get("/profile", ensureAuthentication, profileUserController.handle); 
 
-export { users };
+export { 
+  users,
+};
