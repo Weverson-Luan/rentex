@@ -37,9 +37,10 @@ container.registerSingleton<ICategoriesRepository>(
 //ISpecificationRepositorie => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
 // para quando agente for usar esse nome ele já intendera qual classe estamos chamando
 container.registerSingleton<ISpecificationsRepository>(
-  "ISpecificationsRepository",
+  "SpecificationsRepository",
   SpecificationsRepository
 );
+
 
 //IUsersRepository => vamos passar nossa interface de repositorio, eai vamos dar um nome para nosso registro
 // para quando agente for usar esse nome ele já intendera qual classe estamos chamando

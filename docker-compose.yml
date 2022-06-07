@@ -27,6 +27,7 @@ services:
         - POSTGRES_DB=rentx_ignite
       volumes:
         - pgdata:/data/postgres
+        
   redis-database:
       image: redis:alpine
       container_name: ignite-reds

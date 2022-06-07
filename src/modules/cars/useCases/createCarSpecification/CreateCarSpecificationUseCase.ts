@@ -1,13 +1,9 @@
-import { Car } from "@modules/cars/infra/typeorm/entity/Car";
-import { Specification } from "@modules/cars/infra/typeorm/entity/Specification";
-import { SpecificationsRepository } from "@modules/cars/infra/typeorm/repositories/SpecificationsRepository";
-import { SpecificationsInMemory } from "@modules/cars/repositories/inMemory/SpecificationsInMemory";
-import { ICarRepository } from "@modules/cars/repositories/interface/ICarRepository";
-import { ISpecificationsRepository } from "@modules/cars/repositories/interface/ISpecificationsRepository";
-import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
-
+import { Car } from "@modules/cars/infra/typeorm/entity/Car";
+import { SpecificationsRepository } from "@modules/cars/infra/typeorm/repositories/SpecificationsRepository";
+import { ICarRepository } from "@modules/cars/repositories/interface/ICarRepository";
+import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
   car_id?: string;
@@ -19,7 +15,7 @@ class CreateCarSpecificationUseCase {
   constructor(
     @inject("CarRepository")
     private readonly carRepository: ICarRepository,
-    @inject("ISpecificationsRepository")
+    @inject("SpecificationsRepository")
     private readonly specificationRepository: SpecificationsRepository,
   ){}
   async execute({ car_id, specifications_id }: IRequest): Promise<Car>{
@@ -39,6 +35,6 @@ class CreateCarSpecificationUseCase {
 
     return carReadyExists;
 
-  }
+  };
 }
 export { CreateCarSpecificationUseCase };

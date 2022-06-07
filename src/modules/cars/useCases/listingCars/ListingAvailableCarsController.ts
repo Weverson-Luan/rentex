@@ -3,10 +3,8 @@ import { container } from "tsyringe";
 import { ListingAvailableCarUseCase } from "@modules/cars/useCases/listingCars/ListingAvailableCarsUseCase";
 
 class ListingAvailableCarController {
-
     async handle(request: Request, response: Response):Promise<Response>{
-      const { name, brand, category_id } = request.query;  //localhost/list/params?
-     
+      const { name, brand, category_id } = request.query;
 
       const listingAvailableCarUseCase = container.resolve(ListingAvailableCarUseCase);
 
@@ -16,10 +14,12 @@ class ListingAvailableCarController {
         category_id: category_id as string,
       });
      
+      return response.status(200).json({
+        error: false,
+        data: cars,
+      });
 
-      return response.status(200).json(cars)
-
-    }
+    };
 };
 
 export { ListingAvailableCarController };

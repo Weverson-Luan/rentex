@@ -17,7 +17,7 @@ class UpdatedUserAvatarController {
     });
 
     return response.status(200).send();
-  }
+  };
 
 };
 
